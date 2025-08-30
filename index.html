@@ -12,8 +12,9 @@
         <h2>Tìm trạm sạc VinFast gần nhất</h2>
       </header>
       <main>
+        <!-- 1 -->
         <div class="vehicle-select">
-          <p style="text-align: center">1. Bạn đi xe gì:</p>
+          <p style="text-align: center">1. Bạn đi xe gì?</p>
           <div class="vehicle-options">
             <label for="car">
               <input type="radio" id="car" name="vehicleType" value="car" />
@@ -30,8 +31,12 @@
             </label>
           </div>
         </div>
-        <div id="findButton" hidden><button class="find-btn">2. Tìm kiếm</button><p>Vui lòng cho phép truy cập vị trí để tìm trạm sạc gần nhất</p></div>
-        <div id="result" class="result" hidden></div>
+        <!-- 2 -->
+        <div id="findButton" hidden>
+          <button class="find-btn">2. Tìm trạm</button>
+        </div>
+        <!-- 3 -->
+        <div id="result" class="result"></div>
       </main>
     </div>
     <script src="main.js"></script>

@@ -6,13 +6,12 @@ body {
   display: flex;
   align-items: start;
   justify-content: center;
+  font-size: 1rem;
 }
 
 .container {
   width: 100%;
-  max-width: 420px;
-  border-radius: 16px;
-  padding: 32px 16px;
+  max-width: 375px;
 }
 
 .header {
@@ -20,8 +19,6 @@ body {
   margin-bottom: 24px;
 }
 .header h1 {
-  font-size: 2rem;
-  font-weight: 700;
   color: #222;
   margin: 0 0 8px 0;
 }
@@ -35,7 +32,7 @@ body {
 }
 .vehicle-select label {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #333;
   margin-bottom: 12px;
@@ -57,10 +54,10 @@ body {
 .vehicle-options span {
   display: inline-block;
   padding: 8px 12px;
-  border: 2px solid #d1d5db;
+  border: 2px solid #e5e7eb;
   border-radius: 9999px;
   color: #6b7280;
-  font-size: 16px;
+  font-size: 1em;
   transition: all 0.2s ease-in-out;
 }
 
@@ -70,30 +67,31 @@ body {
   background-color: #eff6ff;
 }
 
-#findButton p{
-  font-size: 14px;
-  text-align: center;
-  color: #2563eb;
-  font-style: italic;
-}
-
-.find-btn {
+/* Unified button style for both .find-btn and .open-maps-btn */
+.find-btn,
+.open-maps-btn {
   width: 100%;
   background: #2563eb;
   color: #fff;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1em;
   padding: 14px 0;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 0;
+  margin-top: 16px;
   transition: background 0.2s;
+  text-align: center;
+  display: block;
+  max-width: 100%;
 }
-.find-btn:hover:not(:disabled) {
-  background: #1d4ed8;
+.find-btn:hover:not(:disabled),
+.open-maps-btn:hover:not(:disabled) {
+  background: #2563eb;
 }
-.find-btn:disabled {
+.find-btn:disabled,
+.open-maps-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -106,6 +104,11 @@ body {
   height: 40px;
   animation: spin 1s linear infinite;
 }
+
+.error {
+  color: #ef4444;
+  text-align: center;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -117,77 +120,54 @@ body {
 
 .result {
   margin-top: 24px;
-  background: #f9fafb;
   border-radius: 16px;
-  min-height: 100px;
+  min-height: 60px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
+  overflow: hidden;
 }
 
 .result-content {
   width: 100%;
 }
 
-.result-content-link {
-  width: 100%;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  cursor: pointer;
-}
-.result:hover {
-  background-color: #f0f4f9;
-}
-.result-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-.maps-icon {
-  width: 48px;
-  height: 48px;
-  margin-top: 8px;
-}
-.result-info {
-  display: flex;
-  flex-direction: column;
-}
-.station-address {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #222;
-  margin: 0;
+.truncate-2 {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-}
-.directions-text {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 4px 0 0 0;
-}
-.station-details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0 0 64px;
-}
-.station-distance {
-  color: #22c55e;
+  font-size: 1em;
   font-weight: 600;
-  font-size: 1rem;
-  margin: 0;
+  color: #222;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  max-width: 100%;
 }
 
 @media (max-width: 600px) {
+  body {
+    margin: 8px;
+    font-size: 1rem;
+  }
   .container {
-    padding: 16px 16px;
+    max-width: 100%;
+    padding: 0 2vw;
+  }
+  .header h1 {
+    font-size: 1.2rem;
+  }
+  .find-btn,
+  .open-maps-btn {
+    font-size: 1em;
+    padding: 12px 0;
+  }
+  .station-address {
+    font-size: 1em;
+  }
+  .result {
+    min-height: 48px;
   }
 }

@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   let stations = [];
-  const findButton = document.getElementById("findButton");
+  const findButtonContainer = document.getElementById("findButton");
+  const findButton = findButtonContainer.querySelector(".find-btn");
   const resultDiv = document.getElementById("result");
+
+  // Always hide resultDiv on load using display:none
+  resultDiv.style.display = "none";
 
   const vehicleOptions = document.querySelectorAll('input[name="vehicleType"]');
 
   vehicleOptions.forEach((option) => {
     option.addEventListener("change", () => {
-      if (findButton.hidden) {
-        findButton.hidden = false;
+      if (findButtonContainer.hidden) {
+        findButtonContainer.hidden = false;
       }
     });
   });
@@ -28,8 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   findButton.addEventListener("click", () => {
-    resultDiv.hidden = false;
-
+    resultDiv.style.display = "";
     if (!navigator.geolocation) {
       resultDiv.innerHTML =
         '<span class="result-placeholder" style="color:#ef4444">Trình duyệt của bạn không hỗ trợ định vị.</span>';
@@ -80,29 +83,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closestStation) {
       const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${closestStation.lat},${closestStation.lon}`;
       resultDiv.innerHTML = `
-        <a href="${mapsUrl}" target="_blank" class="result-content-link">
-          <div class="result-header">
-            <img src="https://www.gstatic.com/images/branding/product/2x/maps_64dp.png" alt="Google Maps icon" class="maps-icon">
-            <div class="result-info">
-              <p class="station-address">${closestStation.address}</p>
-              <p class="directions-text">Bấm để chỉ đường</p>
-            </div>
-          </div>
-          <div class="station-details">
-            <p class="station-distance">${minDistance.toFixed(2)} km</p>
-          </div>
-        </a>
+        <div class="result-content">
+          <div class="result-label" style="text-align:center; font-weight:500; margin-bottom:8px;">Trạm gần nhất:</div>
+          <div class="station-address truncate-2" title="${
+            closestStation.address
+          }">${closestStation.address}</div>
+          <button class="open-maps-btn" style="margin:16px auto 0 auto; display:block;" data-url="${mapsUrl}">
+            3. Mở trên Google Maps (${minDistance.toFixed(2)} km)
+          </button>
+        </div>
       `;
+      const openBtn = resultDiv.querySelector(".open-maps-btn");
+      openBtn.addEventListener("click", () => {
+        window.open(openBtn.getAttribute("data-url"), "_blank");
+      });
     } else {
       resultDiv.innerHTML =
-        '<span class="result-placeholder" style="color:#ef4444">Không tìm thấy trạm sạc nào.</span>';
+        '<span class="error">Không tìm thấy trạm sạc nào.</span>';
     }
   }
 
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
     resultDiv.innerHTML =
-      '<span class="result-placeholder" style="color:#ef4444">Không thể lấy vị trí. Vui lòng cấp quyền truy cập vị trí và thử lại.</span>';
+      '<span class="error">Không thể tìm trạm sạc. <br/> Vui lòng bấm cấp quyền truy cập vị trí và thử lại.</span>';
   }
 
   function haversineDistance(lat1, lon1, lat2, lon2) {
