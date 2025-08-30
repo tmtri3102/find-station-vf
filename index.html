@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tìm trạm sạc VinFast</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h2>Tìm trạm sạc VinFast gần nhất</h2>
+      </header>
+      <main>
+        <div class="vehicle-select">
+          <p style="text-align: center">1. Bạn đi xe gì:</p>
+          <div class="vehicle-options">
+            <label for="car">
+              <input type="radio" id="car" name="vehicleType" value="car" />
+              <span class="pill-tag">🚙 Ô tô điện</span>
+            </label>
+            <label for="motorbike">
+              <input
+                type="radio"
+                id="motorbike"
+                name="vehicleType"
+                value="motorbike"
+              />
+              <span class="pill-tag">🛵 Xe máy điện</span>
+            </label>
+          </div>
+        </div>
+        <button id="findButton" class="find-btn" hidden>2. Tìm kiếm</button>
+        <div id="result" class="result" hidden></div>
+      </main>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
