@@ -70,12 +70,12 @@ body {
   background-color: #eff6ff;
 }
 
-#findBtn {
+#findBtn p{
   font-size: 14px;
   text-align: center;
   color: #2563eb;
   font-style: italic;
-  }
+}
 
 .find-btn {
   width: 100%;
