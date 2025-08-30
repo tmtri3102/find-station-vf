@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="https://www.gstatic.com/images/branding/product/2x/maps_64dp.png" alt="Google Maps icon" class="maps-icon">
             <div class="result-info">
               <p class="station-address">${closestStation.address}</p>
-              <p class="directions-text">Chỉ đường với Google Maps</p>
+              <p class="directions-text">Bấm để chỉ đường</p>
             </div>
           </div>
           <div class="station-details">
